@@ -8,9 +8,12 @@
     <PackageLicenseUrl>https://mfah.mit-license.org</PackageLicenseUrl>
     <PackageIconUrl>https://static.mfah.com/icon.png</PackageIconUrl>
     <RepositoryType>Git</RepositoryType>
-    <PackageTags>mfah, log, logging, facade, common.logging</PackageTags>
+    <PackageTags>mfah log logging facade common.logging</PackageTags>
     <Copyright>© 2017 The Museum of Fine Arts, Houston</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
+    <Version>1.0.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
