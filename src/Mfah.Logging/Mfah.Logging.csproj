@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Chris Pratt</Authors>
+    <Company>The Museum of Fine Arts, Houston</Company>
+    <Description>Logging facade for use with MFAH projects.</Description>
+    <Copyright>© 2017 The Museum of Fine Arts, Houston</Copyright>
+    <PackageLicenseUrl>https://mfah.mit-license.org</PackageLicenseUrl>
+    <PackageIconUrl>https://static.mfah.com/icon.png</PackageIconUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>mfah, log, logging, facade</PackageTags>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Chris Pratt</Authors>
+    <Company>The Museum of Fine Arts, Houston</Company>
+    <Description>Common.Logging adapter for Mfah.Logging</Description>
+    <PackageLicenseUrl>https://mfah.mit-license.org</PackageLicenseUrl>
+    <PackageIconUrl>https://static.mfah.com/icon.png</PackageIconUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>mfah, log, logging, facade, common.logging</PackageTags>
+    <Copyright>© 2017 The Museum of Fine Arts, Houston</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Common.Logging.Core" Version="3.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mfah.Logging\Mfah.Logging.csproj" />
+  </ItemGroup>
+
+</Project>
