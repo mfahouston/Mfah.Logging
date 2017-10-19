@@ -1,5 +1,6 @@
 ﻿using Common.Logging;
 using System;
+using System.Collections.Generic;
 
 namespace Mfah.Logging.CommonLogging
 {
@@ -7,122 +8,54 @@ namespace Mfah.Logging.CommonLogging
     {
         private readonly ILog _logger;
 
+        private Dictionary<LogLevel, Action<LogEntry>> MessageMethods => new Dictionary<LogLevel, Action<LogEntry>>
+        {
+            [LogLevel.Trace] = x => { },
+            [LogLevel.Debug] = x => _logger.Debug(x.Message),
+            [LogLevel.Information] = x => _logger.Info(x.Message),
+            [LogLevel.Warning] = x => _logger.Warn(x.Message),
+            [LogLevel.Error] = x => _logger.Error(x.Message),
+            [LogLevel.Critical] = x => _logger.Fatal(x.Message),
+        };
+
+        private Dictionary<LogLevel, Action<LogEntry>> FormatMethods => new Dictionary<LogLevel, Action<LogEntry>>
+        {
+            [LogLevel.Trace] = x => { },
+            [LogLevel.Debug] = x => _logger.DebugFormat(x.Message as string, x.Args),
+            [LogLevel.Information] = x => _logger.InfoFormat(x.Message as string, x.Args),
+            [LogLevel.Warning] = x => _logger.WarnFormat(x.Message as string, x.Args),
+            [LogLevel.Error] = x => _logger.ErrorFormat(x.Message as string, x.Args),
+            [LogLevel.Critical] = x => _logger.FatalFormat(x.Message as string, x.Args),
+        };
+
+        private Dictionary<LogLevel, Action<LogEntry>> ExceptionMethods => new Dictionary<LogLevel, Action<LogEntry>>
+        {
+            [LogLevel.Trace] = x => { },
+            [LogLevel.Debug] = x => _logger.Debug(x.Message, x.Exception),
+            [LogLevel.Information] = x => _logger.Info(x.Message, x.Exception),
+            [LogLevel.Warning] = x => _logger.Warn(x.Message, x.Exception),
+            [LogLevel.Error] = x => _logger.Error(x.Message, x.Exception),
+            [LogLevel.Critical] = x => _logger.Fatal(x.Message, x.Exception),
+        };
+
         public CommonLoggingLogger(ILog logger)
         {
             _logger = logger;
         }
 
-        public void Log(LogLevel level, object message, params object[] args)
+        public void Log(LogEntry logEntry)
         {
-            LoggerLog(level, null, message, args);
-        }
-
-        public void Log(LogLevel level, object message, Exception exception)
-        {
-            LoggerLog(level, exception, message);
-        }
-
-        private void LoggerLog(LogLevel level, Exception exception, object message, params object[] args)
-        {
-            LoggerDebug(level, exception, message, args);
-            LoggerInfo(level, exception, message, args);
-            LoggerWarn(level, exception, message, args);
-            LoggerError(level, exception, message, args);
-            LoggerFatal(level, exception, message, args);
-        }
-
-        private void LoggerDebug(LogLevel level, Exception exception, object message, params object[] args)
-        {
-            if (level == LogLevel.Debug)
+            if (logEntry.Exception != null)
             {
-                if (exception != null)
-                {
-                    _logger.Debug(message, exception);
-                }
-                if (message is string && args.Length > 0)
-                {
-                    _logger.DebugFormat(message as string, args);
-                }
-                else
-                {
-                    _logger.Debug(message);
-                }
+                ExceptionMethods[logEntry.Level](logEntry);
             }
-        }
-
-        private void LoggerInfo(LogLevel level, Exception exception, object message, params object[] args)
-        {
-            if (level == LogLevel.Information)
+            else if (logEntry.Message is string && logEntry.Args.Length > 0)
             {
-                if (exception != null)
-                {
-                    _logger.Info(message, exception);
-                }
-                if (message is string && args.Length > 0)
-                {
-                    _logger.InfoFormat(message as string, args);
-                }
-                else
-                {
-                    _logger.Info(message);
-                }
+                FormatMethods[logEntry.Level](logEntry);
             }
-        }
-
-        private void LoggerWarn(LogLevel level, Exception exception, object message, params object[] args)
-        {
-            if (level == LogLevel.Warning)
+            else
             {
-                if (exception != null)
-                {
-                    _logger.Warn(message, exception);
-                }
-                if (message is string && args.Length > 0)
-                {
-                    _logger.WarnFormat(message as string, args);
-                }
-                else
-                {
-                    _logger.Warn(message);
-                }
-            }
-        }
-
-        private void LoggerError(LogLevel level, Exception exception, object message, params object[] args)
-        {
-            if (level == LogLevel.Error)
-            {
-                if (exception != null)
-                {
-                    _logger.Error(message, exception);
-                }
-                if (message is string && args.Length > 0)
-                {
-                    _logger.ErrorFormat(message as string, args);
-                }
-                else
-                {
-                    _logger.Error(message);
-                }
-            }
-        }
-
-        private void LoggerFatal(LogLevel level, Exception exception, object message, params object[] args)
-        {
-            if (level == LogLevel.Fatal)
-            {
-                if (exception != null)
-                {
-                    _logger.Fatal(message, exception);
-                }
-                if (message is string && args.Length > 0)
-                {
-                    _logger.FatalFormat(message as string, args);
-                }
-                else
-                {
-                    _logger.Fatal(message);
-                }
+                MessageMethods[logEntry.Level](logEntry);
             }
         }
     }

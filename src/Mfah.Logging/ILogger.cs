@@ -6,7 +6,6 @@ namespace Mfah.Logging
 {
     public interface ILogger
     {
-        void Log(LogLevel level, object message, params object[] args);
-        void Log(LogLevel level, object message, Exception exception);
+        void Log(LogEntry logEntry);
     }
 }

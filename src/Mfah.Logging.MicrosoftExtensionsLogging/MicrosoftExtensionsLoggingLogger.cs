@@ -1,49 +1,60 @@
 ﻿using System;
 using MEL = Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace Mfah.Logging.MicrosoftExtensionsLogging
 {
     public class MicrosoftExtensionsLoggingLogger<T> : ILogger
     {
-        private MEL.ILogger<T> _logger;
+        private readonly MEL.ILogger<T> _logger;
+
+        private Dictionary<LogLevel, Action<LogEntry>> MessageMethods => new Dictionary<LogLevel, Action<LogEntry>>
+        {
+            [LogLevel.Trace] =
+                x => _logger.LogTrace(x.Message as string, x.Args),
+            [LogLevel.Debug] =
+                x => _logger.LogDebug(x.Message as string, x.Args),
+            [LogLevel.Information] =
+                x => _logger.LogInformation(x.Message as string, x.Args),
+            [LogLevel.Warning] =
+                x => _logger.LogWarning(x.Message as string, x.Args),
+            [LogLevel.Error] =
+                x => _logger.LogError(x.Message as string, x.Args),
+            [LogLevel.Critical] =
+                x => _logger.LogCritical(x.Message as string, x.Args),
+        };
+
+        private Dictionary<LogLevel, Action<LogEntry>> ExceptionMethods => new Dictionary<LogLevel, Action<LogEntry>>
+        {
+            [LogLevel.Trace] =
+                x => _logger.LogTrace(x.Exception, x.Message as string, x.Args),
+            [LogLevel.Debug] =
+                x => _logger.LogDebug(x.Exception, x.Message as string, x.Args),
+            [LogLevel.Information] =
+                x => _logger.LogInformation(x.Exception, x.Message as string, x.Args),
+            [LogLevel.Warning] =
+                x => _logger.LogWarning(x.Exception, x.Message as string, x.Args),
+            [LogLevel.Error] =
+                x => _logger.LogError(x.Exception, x.Message as string, x.Args),
+            [LogLevel.Critical] =
+                x => _logger.LogCritical(x.Exception, x.Message as string, x.Args),
+        };
 
         public MicrosoftExtensionsLoggingLogger(MEL.ILogger<T> logger)
         {
             _logger = logger;
         }
 
-        public void Log(LogLevel level, object message, params object[] args)
+        public void Log(LogEntry logEntry)
         {
-            switch (level)
+            if (logEntry.Exception == null)
             {
-                case LogLevel.Debug:
-                    _logger.LogDebug(message as string, args); break;
-                case LogLevel.Information:
-                    _logger.LogInformation(message as string, args); break;
-                case LogLevel.Warning:
-                    _logger.LogWarning(message as string, args); break;
-                case LogLevel.Error:
-                    _logger.LogError(message as string, args); break;
-                case LogLevel.Fatal:
-                    _logger.LogCritical(message as string, args); break;
+                MessageMethods[logEntry.Level](logEntry);
             }
-        }
-
-        public void Log(LogLevel level, object message, Exception exception)
-        {
-            switch (level)
+            else
             {
-                case LogLevel.Debug:
-                    _logger.LogDebug(exception, message as string, new object[0]); break;
-                case LogLevel.Information:
-                    _logger.LogInformation(exception, message as string, new object[0]); break;
-                case LogLevel.Warning:
-                    _logger.LogWarning(exception, message as string, new object[0]); break;
-                case LogLevel.Error:
-                    _logger.LogError(exception, message as string, new object[0]); break;
-                case LogLevel.Fatal:
-                    _logger.LogCritical(exception, message as string, new object[0]); break;
+                ExceptionMethods[logEntry.Level](logEntry);
             }
         }
     }

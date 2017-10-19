@@ -11,9 +11,10 @@
     <PackageIconUrl>https://static.mfah.com/icon.png</PackageIconUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>mfah log logging facade</PackageTags>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
-    <Version>1.0.0.1</Version>
+    <AssemblyVersion>1.1</AssemblyVersion>
+    <FileVersion>1.1</FileVersion>
+    <Version>1.1</Version>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
 </Project>
