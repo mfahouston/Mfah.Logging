@@ -3,11 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mfah.Logging", "src\Mfah.Logging\Mfah.Logging.csproj", "{0839F0AE-337E-4D71-8196-2E31EE44BB04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mfah.Logging", "src\Mfah.Logging\Mfah.Logging.csproj", "{0839F0AE-337E-4D71-8196-2E31EE44BB04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mfah.Logging.MicrosoftExtensionsLogging", "src\Mfah.Logging.MicrosoftExtensionsLogging\Mfah.Logging.MicrosoftExtensionsLogging.csproj", "{7948CA29-1258-405C-B784-40A5C1E02112}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mfah.Logging.MicrosoftExtensionsLogging", "src\Mfah.Logging.MicrosoftExtensionsLogging\Mfah.Logging.MicrosoftExtensionsLogging.csproj", "{7948CA29-1258-405C-B784-40A5C1E02112}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mfah.Logging.CommonLogging", "src\Mfah.Logging.CommonLogging\Mfah.Logging.CommonLogging.csproj", "{55C1C950-F448-4B29-91C5-808DEF6A7C82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mfah.Logging.CommonLogging", "src\Mfah.Logging.CommonLogging\Mfah.Logging.CommonLogging.csproj", "{55C1C950-F448-4B29-91C5-808DEF6A7C82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{20AFE7B1-980D-4D3F-B09A-BD711D07D98C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mfah.Logging.Tests", "test\Mfah.Logging.Tests\Mfah.Logging.Tests.csproj", "{68AFE29B-7D91-4514-9DBE-184C435447A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mfah.Logging.CommonLogging.Tests", "test\Mfah.Logging.CommonLogging.Tests\Mfah.Logging.CommonLogging.Tests.csproj", "{F8C3A900-2926-4A95-960C-469E66C383F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mfah.Logging.MicrosoftExtensionsLogging.Tests", "test\Mfah.Logging.MicrosoftExtensionsLogging.Tests\Mfah.Logging.MicrosoftExtensionsLogging.Tests.csproj", "{445C28CB-CD7B-4BB1-B843-80B488B94358}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{E4F50D39-2EB8-41A3-ADFE-279B4C6DC79C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mfah.Logging.Samples.AspNetCoreWebApp", "samples\Mfah.Logging.Samples.AspNetCoreWebApp\Mfah.Logging.Samples.AspNetCoreWebApp.csproj", "{6DC1ABC6-A17D-4E70-AD96-4E900F33A081}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mfah.Logging.Tests.Common", "test\Mfah.Logging.Tests.Common\Mfah.Logging.Tests.Common.csproj", "{7C205EF2-4AA0-4D74-9E5F-4EAA9A4942BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +41,36 @@ Global
 		{55C1C950-F448-4B29-91C5-808DEF6A7C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55C1C950-F448-4B29-91C5-808DEF6A7C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55C1C950-F448-4B29-91C5-808DEF6A7C82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68AFE29B-7D91-4514-9DBE-184C435447A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68AFE29B-7D91-4514-9DBE-184C435447A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68AFE29B-7D91-4514-9DBE-184C435447A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68AFE29B-7D91-4514-9DBE-184C435447A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8C3A900-2926-4A95-960C-469E66C383F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8C3A900-2926-4A95-960C-469E66C383F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8C3A900-2926-4A95-960C-469E66C383F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8C3A900-2926-4A95-960C-469E66C383F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{445C28CB-CD7B-4BB1-B843-80B488B94358}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{445C28CB-CD7B-4BB1-B843-80B488B94358}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{445C28CB-CD7B-4BB1-B843-80B488B94358}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{445C28CB-CD7B-4BB1-B843-80B488B94358}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DC1ABC6-A17D-4E70-AD96-4E900F33A081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DC1ABC6-A17D-4E70-AD96-4E900F33A081}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DC1ABC6-A17D-4E70-AD96-4E900F33A081}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DC1ABC6-A17D-4E70-AD96-4E900F33A081}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C205EF2-4AA0-4D74-9E5F-4EAA9A4942BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C205EF2-4AA0-4D74-9E5F-4EAA9A4942BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C205EF2-4AA0-4D74-9E5F-4EAA9A4942BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C205EF2-4AA0-4D74-9E5F-4EAA9A4942BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{68AFE29B-7D91-4514-9DBE-184C435447A0} = {20AFE7B1-980D-4D3F-B09A-BD711D07D98C}
+		{F8C3A900-2926-4A95-960C-469E66C383F3} = {20AFE7B1-980D-4D3F-B09A-BD711D07D98C}
+		{445C28CB-CD7B-4BB1-B843-80B488B94358} = {20AFE7B1-980D-4D3F-B09A-BD711D07D98C}
+		{6DC1ABC6-A17D-4E70-AD96-4E900F33A081} = {E4F50D39-2EB8-41A3-ADFE-279B4C6DC79C}
+		{7C205EF2-4AA0-4D74-9E5F-4EAA9A4942BA} = {20AFE7B1-980D-4D3F-B09A-BD711D07D98C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1CBA5416-41B4-4FC7-88EF-1BE05E90E724}

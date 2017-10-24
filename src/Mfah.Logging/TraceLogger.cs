@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Mfah.Logging
 {
+    /// <summary>
+    /// <see cref="ILogger"/> implementation that utilizes <see cref="System.Diagnostics.Trace"/> to log
+    /// </summary>
     public class TraceLogger : ILogger
     {
         private Dictionary<LogLevel, string> LevelPrefixes => new Dictionary<LogLevel, string>
@@ -17,10 +20,17 @@ namespace Mfah.Logging
             [LogLevel.Critical] = "crit",
         };
         
+        /// <summary>
+        /// Create a new <see cref="TraceLogger"/>
+        /// </summary>
         public TraceLogger()
         {
         }
 
+        /// <summary>
+        /// Create a new <see cref="TraceLogger"/> with one or more <see cref="TraceListener"/>s
+        /// </summary>
+        /// <param name="listeners"></param>
         public TraceLogger(IEnumerable<TraceListener> listeners)
         {
             foreach (var listener in listeners)
@@ -29,6 +39,10 @@ namespace Mfah.Logging
             }
         }
 
+        /// <summary>
+        /// Log something
+        /// </summary>
+        /// <param name="logEntry"><see cref="LogEntry"/> instance to log</param>
         public void Log(LogEntry logEntry)
         {
             if (logEntry.Exception != null)
