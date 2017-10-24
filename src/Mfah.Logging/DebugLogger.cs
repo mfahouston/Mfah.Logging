@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Mfah.Logging
 {
+    /// <summary>
+    /// <see cref="ILogger"/> implementation that utilizes <see cref="System.Diagnostics.Debug"/> to log
+    /// </summary>
     public class DebugLogger : ILogger
     {
         private Dictionary<LogLevel, string> LevelPrefixes => new Dictionary<LogLevel, string>
@@ -17,6 +20,10 @@ namespace Mfah.Logging
             [LogLevel.Critical] = "crit",
         };
 
+        /// <summary>
+        /// Log something
+        /// </summary>
+        /// <param name="logEntry"><see cref="LogEntry"/> instance to log</param>
         public void Log(LogEntry logEntry)
         {
             if (logEntry.Exception != null)
